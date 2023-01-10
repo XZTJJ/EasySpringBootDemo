@@ -2,11 +2,8 @@
 <Configuration status="warn" monitorInterval="60">
 
     <Properties>
-        <Property name="rootLoggingLevel">all</Property>
-        <Property name="filename">${sys:Log4jOutputPath}/webflux.log</Property>
-        <Property name="consolePattern">%d{ISO8601} %style{%marker}{red} [%-22c{2}] %t %-5p: %m%n</Property>
-        <Property name="filePattern"   >%d{ISO8601} %style{%marker}{red} [%-22c{2}] %t %-5p: %m%n</Property>
-        <Property name="rollingFilePattern">${sys:Log4jOutputPath}/webflux-%i.log</Property>
+        <Property name="rootLoggingLevel">INFO</Property>
+        <Property name="consolePattern">%d{yyyy-MM-dd HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n</Property>
     </Properties>
 
     <Appenders>
@@ -14,15 +11,6 @@
         <Console name="Console" target="SYSTEM_OUT">
             <PatternLayout pattern="${consolePattern}"/>
         </Console>
-
-        <RollingFile name="WatchLogFile" fileName="${filename}"
-                filePattern="${rollingFilePattern}" append="true">
-            <PatternLayout pattern="${filePattern}"/>
-            <Policies>
-                <SizeBasedTriggeringPolicy size="500MB"/>
-            </Policies>
-            <DefaultRolloverStrategy max="1"/>
-        </RollingFile>
     </Appenders>
 
     <Loggers>
@@ -48,7 +36,6 @@
                 <ThresholdFilter level="${rootLoggingLevel}" onMatch="ACCEPT" onMismatch="DENY"/>
             </Filters>
             <AppenderRef ref="Console"/>
-            <AppenderRef ref="WatchLogFile"/>
         </Root>
     </Loggers>
 
