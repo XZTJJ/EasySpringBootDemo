@@ -19,25 +19,25 @@ public class CusConfiguaration {
     //自定义Bean
     @Bean
     public MyDate getMyDate() {
-        System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! Just for MyDate!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
-        return new MyDate(LocalDateTime.now(), 12);
+        MyDate myDate = new MyDate(LocalDateTime.now(), 12);
+        System.out.printf("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! Just for MyDate  %s !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!%n", myDate);
+        return myDate;
     }
 
 
     @Bean
     public MyPoJo getMyPoJo() {
-        System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! Just for MyPoJo!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
-        return new MyPoJo("txt1", "txt2");
+        MyPoJo myPoJo = new MyPoJo("txt1", "txt2");
+        System.out.printf("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! Just for myPoJo  %s !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!%n", myPoJo);
+        return myPoJo;
     }
 
 
     @Bean
     public String myEnvStr(){
-        System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! Just for String!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
-        System.out.printf("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! Just for MyDate is %s%n", getMyDate());
-        System.out.printf("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! Just for MyDate is %s%n", getMyDate());
-        System.out.printf("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! Just for MyPoJo is %s%n", getMyPoJo());
-        System.out.printf("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! Just for MyPoJo is %s%n", getMyPoJo());
+        System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! Just for String !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+        System.out.printf("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! second for MyDate is %s !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!%n", getMyDate());
+        System.out.printf("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! second for MyPoJo is %s !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!%n", getMyPoJo());
         return "zhouhc-Env";
     }
 
