@@ -23,11 +23,10 @@
     </properties>
 
     <dependencies>
-        <!-- 响应式编程新加的!!!!!!!!!!!!!!!-->
+        <!-- 响应式编程新加的!!!!!!!!!!!!!!!
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-webflux</artifactId>
-            <!-- Log4j2使用 -->
             <exclusions>
                 <exclusion>
                     <groupId>org.springframework.boot</groupId>
@@ -39,7 +38,6 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
-            <!-- Log4j2使用 -->
             <exclusions>
                 <exclusion>
                     <groupId>org.springframework.boot</groupId>
@@ -52,12 +50,23 @@
             <artifactId>reactor-test</artifactId>
             <scope>test</scope>
         </dependency>
+         响应式编程新加的!!!!!!!!!!!!!!!-->
+        <!--serlvet形式-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.springframework.boot</groupId>
+                    <artifactId>spring-boot-starter-logging</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
         <!-- Log4j2使用 -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-log4j2</artifactId>
         </dependency>
-        <!-- 响应式编程新加的!!!!!!!!!!!!!!!-->
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
