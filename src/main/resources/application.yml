@@ -9,3 +9,7 @@ spring:
 third:
   name: zzzzz
   age: 20
+
+mycar:
+  brand: '红旗CA'
+  maxSpeed: 220

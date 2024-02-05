@@ -7,6 +7,6 @@ import org.springframework.stereotype.Component;
 public class CusRunnerConfig implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
-        System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! Just for CommandLineRunner!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+        System.out.println("调用CommandLineRunner的run()");
     }
 }

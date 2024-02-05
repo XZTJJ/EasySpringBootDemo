@@ -1,14 +1,17 @@
 package com.zhouhc.demo.config;
 
-import com.zhouhc.demo.po.MyDate;
+import com.zhouhc.demo.po.CusBeanFactoryPostProcessor;
+import com.zhouhc.demo.po.MyCar;
 import com.zhouhc.demo.po.MyPoJo;
 //第三方引入
 //import com.zhouhc.test.ThirdPartyPOJO;
 //import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.beans.factory.config.BeanFactoryPostProcessor;
+import org.springframework.beans.factory.config.BeanPostProcessor;
+import org.springframework.beans.factory.config.InstantiationAwareBeanPostProcessor;
+import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-
-import java.time.LocalDateTime;
 
 /**
  * 自定义配置中心
@@ -16,35 +19,55 @@ import java.time.LocalDateTime;
 @Configuration
 public class CusConfiguaration {
 
-    //自定义Bean
-    @Bean
-    public MyDate getMyDate() {
-        MyDate myDate = new MyDate(LocalDateTime.now(), 12);
-        System.out.printf("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! Just for MyDate  %s !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!%n", myDate);
-        return myDate;
-    }
-
-
     @Bean
     public MyPoJo getMyPoJo() {
         MyPoJo myPoJo = new MyPoJo("txt1", "txt2");
-        System.out.printf("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! Just for myPoJo  %s !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!%n", myPoJo);
+        System.out.printf("调用Configuration中的getMyPoJo()创建MyPoJo: %s%n", myPoJo);
         return myPoJo;
     }
 
 
     @Bean
-    public String myEnvStr(){
-        System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! Just for String !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
-        System.out.printf("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! second for MyDate is %s !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!%n", getMyDate());
-        System.out.printf("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! second for MyPoJo is %s !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!%n", getMyPoJo());
+    public String myEnvStr() {
+        System.out.printf("第二次调用Configuration中的getMyPoJo()创建MyPoJo: %s%n", getMyPoJo());
         return "zhouhc-Env";
     }
 
-    /**随便写个java工程，作为maven依赖引入或者使用jar引入，ThirdPartyPOJO就是一个第三方的Bean，真的可以注入属性
+    @Bean(initMethod = "myInit", destroyMethod = "myDestroy")
+    @ConfigurationProperties(prefix = "mycar")
+    public MyCar getMycar() {
+        MyCar myCar = new MyCar();
+        System.out.printf("调用Configuration中的getMycar()创建MyCar(带有对应的init和destory方法): %s%n", myCar);
+        return myCar;
+    }
+
     @Bean
-    @ConfigurationProperties(prefix = "third")
-    public ThirdPartyPOJO thirdPartyPOJO() {
-        return new ThirdPartyPOJO();
-    }*/
+    public BeanFactoryPostProcessor getMyBeanFactoryPostProcessor() {
+        CusBeanFactoryPostProcessor.MyBeanFactoryPostProcessor myBeanFactoryPostProcessor = new CusBeanFactoryPostProcessor.MyBeanFactoryPostProcessor();
+        System.out.printf("调用Configuration中的getMyBeanFactoryPostProcessor()创建MyBeanFactoryPostProcessor: %s%n", myBeanFactoryPostProcessor);
+        return myBeanFactoryPostProcessor;
+    }
+
+
+    @Bean
+    public InstantiationAwareBeanPostProcessor getMyInstantiationAwareBeanPostProcessor() {
+        CusBeanFactoryPostProcessor.MyInstantiationAwareBeanPostProcessor myInstantiationAwareBeanPostProcessor
+                = new CusBeanFactoryPostProcessor.MyInstantiationAwareBeanPostProcessor();
+        System.out.printf("调用Configuration中的getMyInstantiationAwareBeanPostProcessor()创建myInstantiationAwareBeanPostProcessor: %s%n", myInstantiationAwareBeanPostProcessor);
+        return myInstantiationAwareBeanPostProcessor;
+    }
+
+    @Bean
+    public BeanPostProcessor getMyBeanPostProcessor() {
+        CusBeanFactoryPostProcessor.MyBeanPostProcessor myBeanPostProcessor = new CusBeanFactoryPostProcessor.MyBeanPostProcessor();
+        System.out.printf("调用Configuration中的getMyBeanPostProcessor()创建myBeanPostProcessor: %s%n", myBeanPostProcessor);
+        return myBeanPostProcessor;
+    }
+
+    /**随便写个java工程，作为maven依赖引入或者使用jar引入，ThirdPartyPOJO就是一个第三方的Bean，真的可以注入属性
+     @Bean
+     @ConfigurationProperties(prefix = "third")
+     public ThirdPartyPOJO thirdPartyPOJO() {
+     return new ThirdPartyPOJO();
+     }*/
 }

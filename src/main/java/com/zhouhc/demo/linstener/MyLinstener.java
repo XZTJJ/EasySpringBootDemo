@@ -9,11 +9,11 @@ import org.springframework.stereotype.Component;
 public class MyLinstener{
     @EventListener
     public void started(ApplicationStartedEvent applicationStartedEvent){
-        System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! Just for applicationStartedEvent!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+        System.out.println("调用了ApplicationStartedEvent的started()");
     }
 
     @EventListener
     public void ready(ApplicationReadyEvent applicationReadyEvent){
-        System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! Just for applicationReadyEvent!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+        System.out.println("调用了ApplicationReadyEvent的ready()");
     }
 }
