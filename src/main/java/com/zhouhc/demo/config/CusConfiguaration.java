@@ -27,12 +27,6 @@ public class CusConfiguaration {
     }
 
 
-    @Bean
-    public String myEnvStr() {
-        System.out.printf("第二次调用Configuration中的getMyPoJo()创建MyPoJo: %s%n", getMyPoJo());
-        return "zhouhc-Env";
-    }
-
     @Bean(initMethod = "myInit", destroyMethod = "myDestroy")
     @ConfigurationProperties(prefix = "mycar")
     public MyCar getMycar() {

@@ -2,11 +2,18 @@ package com.zhouhc.demo.linstener;
 
 import org.springframework.boot.context.event.ApplicationReadyEvent;
 import org.springframework.boot.context.event.ApplicationStartedEvent;
+import org.springframework.context.event.ContextRefreshedEvent;
 import org.springframework.context.event.EventListener;
 import org.springframework.stereotype.Component;
 
 @Component
 public class MyLinstener{
+
+    @EventListener
+    public void refresh(ContextRefreshedEvent contextRefreshedEvent){
+        System.out.println("调用了ContextRefreshedEvent的refresh()");
+    }
+
     @EventListener
     public void started(ApplicationStartedEvent applicationStartedEvent){
         System.out.println("调用了ApplicationStartedEvent的started()");
